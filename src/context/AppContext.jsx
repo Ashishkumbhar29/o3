@@ -18,9 +18,20 @@ const DEFAULT_DATA = {
   videos: [
     {
       id: 'vid-static-1',
-      title: 'Our Personal Video',
+      title: 'Our Personal Video 1',
       videoUrl: '/media/video1.mp4',
-      videoThumbnail: '/media/video1_thumb.jpg',
+      caption: 'Our special personal video memory.'
+    },
+    {
+      id: 'vid-static-2',
+      title: 'Our Personal Video 2',
+      videoUrl: '/media/video2.mp4',
+      caption: 'Our special personal video memory.'
+    },
+    {
+      id: 'vid-static-3',
+      title: 'Our Personal Video 3',
+      videoUrl: '/media/video3.mp4',
       caption: 'Our special personal video memory.'
     }
   ], // Static deployment fallback
@@ -179,8 +190,8 @@ export const ProposalProvider = ({ children }) => {
       if (isMounted) {
         setData((prev) => ({
           ...prev,
-          videos: finalVideos,
-          bgMusicUrl: storedSong || prev.bgMusicUrl || ''
+          videos: finalVideos.length > 0 ? finalVideos : (prev.videos && prev.videos.length > 0 ? prev.videos : DEFAULT_DATA.videos),
+          bgMusicUrl: storedSong || prev.bgMusicUrl || DEFAULT_DATA.bgMusicUrl
         }));
       }
 
